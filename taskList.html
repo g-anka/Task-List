@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task List</title>
+    <link rel="stylesheet" href="taskList.css" />
+    <script src="taskList.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h2>Список дел</h2>
+        <form id="add-form" class="form">
+            <input type="text" id="add-input" class="form-input" placeholder="Что нужно сделать?">
+            <button type="submit" class="form-button">Добавить</button>
+        </form>
+    </div>
+
+    <ul id="list">
+        <li>Покормить кота</li>
+        <li class="checked">Купить молоко</li>
+        <li>Выкинуть мусор</li>
+        <li>Сделать зарядку</li>
+    </ul>
+</body>
+<script>
+function init() {
+    const addBtn = document.querySelector(".form-button");
+
+    function addNewTask(event) {
+        event.preventDefault();
+        //найти значение инпута
+        const inputValue = document.querySelector(".form-input").value;
+        console.log("inputValue", inputValue);
+
+        if(inputValue) {
+            //создать новый элемент
+            let newTask = document.createElement('li');
+            //вставить его в конец списка
+            list.append(newTask);
+            //добавить в него значение инпута
+            newTask.innerHTML = `${inputValue}`;
+            //очистка инпута после добавления новой задачи
+            document.querySelector("#add-form").reset();
+        }
+    }
+
+    function crossTask(event) {
+        console.log(event.target);
+        event.target.classList.toggle("crossed")
+    }
+
+    addBtn.onclick = addNewTask;
+    list.onclick = crossTask;
+}
+
+window.onload = init;
+</script>
+</html>
