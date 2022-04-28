@@ -9,24 +9,37 @@
     <script src="taskList.js"></script>
 </head>
 <body>
-    <div class="header">
-        <h2>Список дел</h2>
-        <form id="add-form" class="form">
-            <input type="text" id="add-input" class="form-input" placeholder="Что нужно сделать?">
-            <button type="submit" class="form-button">Добавить</button>
-        </form>
-    </div>
+<div class="gradient">
+        <div class="header">
+            <h2>TaskList</h2>
+            <form id="add-form" class="form">
+                <input type="text" id="add-input" class="form-input" placeholder="Write here a new one">
+                <button type="submit" class="form-button">+</button>
+            </form>
+        </div>
 
-    <ul id="list">
-        <li>Покормить кота</li>
-        <li class="checked">Купить молоко</li>
-        <li>Выкинуть мусор</li>
-        <li>Сделать зарядку</li>
-    </ul>
+        <ul id="list">
+            <li class="task">Eat smth delicious</li>
+            <li class="task">Learn JS</li>
+            <li class="task crossed">Make TaskList</li>
+            <li class="task">Go to sleep</li>
+        </ul>
+</div>
 </body>
 <script>
 function init() {
     const addBtn = document.querySelector(".form-button");
+
+    //функция добавления иконки удаления
+    function addDeleteIcons() {
+        const allTasks = document.querySelectorAll(".task");
+        for (let task of allTasks) {
+            let deleteIcon = document.createElement("img");
+            deleteIcon.src = "./icon-trash.svg";
+            deleteIcon.classList.add("delete-icon");
+            task.appendChild(deleteIcon);
+        }
+    }
 
     function addNewTask(event) {
         event.preventDefault();
@@ -37,22 +50,36 @@ function init() {
         if(inputValue) {
             //создать новый элемент
             let newTask = document.createElement('li');
+            newTask.classList.add("task");
             //вставить его в конец списка
             list.append(newTask);
             //добавить в него значение инпута
             newTask.innerHTML = `${inputValue}`;
+
+            //тоже добавить иконку удаления
+            addDeleteIcons();
+
             //очистка инпута после добавления новой задачи
             document.querySelector("#add-form").reset();
         }
     }
 
     function crossTask(event) {
-        console.log(event.target);
+        console.log("eventCross", event.target);
         event.target.classList.toggle("crossed")
+    }
+
+    function deleteTask(event) {
+        if(event.target.classList.contains("delete-icon")) {
+            event.target.parentElement.classList.add("deleted")
+        }
+        return
     }
 
     addBtn.onclick = addNewTask;
     list.onclick = crossTask;
+    document.onclick= deleteTask;
+    addDeleteIcons();
 }
 
 window.onload = init;

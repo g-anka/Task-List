@@ -1,7 +1,131 @@
-.hidden {
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: "Arial";
+    font-size: 18px;
+    background: #a5dafc;
+    padding-bottom: 100px;
+}
+
+.gradient{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#9b8bf9, #a5dafc) no-repeat;
+}
+
+.header {
+    width: 80%;
+    border-radius: 30px;
+    margin: 50px auto 15px;
+    background: linear-gradient(#ba97fb, #baaafc) no-repeat;
+}
+
+h2 {
+    font-family: "Arial Black";
+    color: white;
+    margin: 0px 0px 20px 0px;
+    padding-top: 30px;
+    padding-left: 40px;
+}
+
+.form {
+    display: block;
+    text-align: center;
+    padding-bottom: 45px;
+}
+
+.form-input {
+    width: 50%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid khaki;
+    padding:  10px 15px;
+    outline: none;
+}
+
+.form-input::placeholder {
+    color: khaki;
+    font-size: 15px;
+}
+
+.form-input::-moz-placeholder {
+    opacity: 1;
+}
+
+.form-input:focus {
+    border-bottom: 1px solid #0cb27d;
+}
+
+/*убирает затемнение фона в хроме*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+.form-button {
+    background-color: #8404f9;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    width: 70px;
+    height: 45px;
+    transition: font-size 0.3s;
+    margin-left: 10px;
+}
+
+.form-button:hover {
+    background-color: #0cb27d;
+    text-shadow: 1px 0 .9px white, 1px 0 .9px white, 1px 0 .9px white;
+    cursor: pointer;
+}
+
+
+.deleted {
     display: none;
 }
 
 .crossed {
     text-decoration: line-through;
+}
+
+ul {
+    width: 80%;
+    margin: 0 auto 70px;
+    padding: 0px;
+}
+
+li {
+    position: relative;
+    cursor: pointer;
+    list-style-type: none;
+    background-color: white;
+    border-radius: 30px;
+    margin-bottom: 15px;
+    padding: 40px 80px;
+}
+
+ul li.crossed::before {
+    content: url("./icon-done.svg");
+    position: absolute;
+    top: 50%;
+    left: 25px;
+    transform: translateY(-50%);
+}
+
+.delete-icon {
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    right: 40px;
+    transform: translateY(-50%);
+}
+
+.delete-icon:hover {
+    filter: invert(46%) sepia(75%) saturate(2598%) hue-rotate(332deg) brightness(94%) contrast(95%);
 }
